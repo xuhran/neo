@@ -1,0 +1,71 @@
+// https://github.com/arackaf/customize-cra/blob/HEAD/api.md#addlessloaderloaderoptions
+const {
+  override,
+  fixBabelImports,
+  addWebpackPlugin,
+  overrideDevServer,
+  addWebpackExternals, // cdn 引入
+  addWebpackAlias,
+  addDecoratorsLegacy,
+} = require('customize-cra')
+
+const path = require('path')
+const resolve = dir => path.resolve(__dirname, dir)
+const AntdDayjsWebpackPlugin = require('antd-dayjs-webpack-plugin')
+
+const devProxy = () => config => {
+  config.proxy = {
+    '/boss': {
+      target: 'http://192.168.133.63:8020/', // 北京 开发
+      changeOrigin: true,
+    },
+  }
+  return config
+}
+
+const stylus = () => config => {
+  const stylusLoader = {
+    test: /\.styl$/,
+    use: [
+      {
+        loader: 'style-loader',
+      },
+      {
+        loader: 'css-loader',
+        options: {
+          modules: {
+            mode: 'local',
+            // 样式名规则配置
+            localIdentName: '[local]--[hash:base64:5]',
+          },
+        },
+      },
+      {
+        loader: 'stylus-loader',
+      },
+    ],
+  }
+  const oneOf = config.module.rules.find(rule => rule.oneOf).oneOf
+  oneOf.unshift(stylusLoader)
+  return config
+}
+
+module.exports = {
+  webpack: override(
+    fixBabelImports('import', {
+      libraryName: 'antd',
+      libraryDirectory: 'es',
+      style: 'css',
+    }),
+    addWebpackPlugin(new AntdDayjsWebpackPlugin()),
+    addWebpackExternals({
+      React: 'React',
+    }),
+    addWebpackAlias({
+      ['@']: path.resolve(__dirname, 'src'),
+    }),
+    addDecoratorsLegacy(), // 支持装饰器
+    stylus(),
+  ),
+  devServer: overrideDevServer(devProxy()),
+}

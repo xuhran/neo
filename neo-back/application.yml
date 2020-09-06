@@ -1,0 +1,12 @@
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/vhr?useUnicode=true&characterEncoding=UTF-8&useAffectedRows=true&autoReconnect=true&zeroDateTimeBehavior=convertToNull&connectTimeout=2000&sessionVariables=character_set_connection=utf8mb4&character_set_client=utf8mb4
+    username: root
+    password: root
+
+mybatis:
+  mapper-locations: classpath*:mapper/*
+  configuration:
+    map-underscore-to-camel-case: true
+
