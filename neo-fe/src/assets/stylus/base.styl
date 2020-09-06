@@ -1,0 +1,53 @@
+
+$ai-blue = #25A0FF
+$ai-line = #e9eaec
+.table
+  width 100%
+  padding 0
+  border solid 1px $ai-line
+  border-top solid 2px $ai-blue
+  border-collapse collapse
+  tr
+    border solid 1px $ai-line !important
+  td
+    padding 15px
+    margin 0
+    b
+      padding-right 10px
+.other-table
+  width 100%
+  border-collapse collapse
+  border solid 1px $ai-line
+  background-color #f8f8f8
+  &.background
+    background-color #fff
+  tr
+    border none
+    border-bottom solid 1px $ai-line
+  td
+    border 1px solid #f0f0f0 !important
+    padding 8px 15px
+    border none
+    height auto
+    color #101010
+    font-size 12px
+  .other-title
+    color #999
+  tbody
+    tr
+      &:last-child
+        border-bottom 0
+.clearfix
+  content ''
+.right
+  float right
+.left
+  float left
+.flex-end
+  display flex
+  justify-content flex-end
+  align-items center
+.flex-start
+  display flex
+  justify-content flex-start
+  align-items center

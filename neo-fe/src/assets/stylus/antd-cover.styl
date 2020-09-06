@@ -1,0 +1,13 @@
+// table中嵌套table样式会出问题
+:global
+  .ant-table
+    color #101010 !important
+  .ant-table tbody > tr .ant-table
+    margin 0 !important
+    border-bottom 1px solid #f0f0f0
+  .ant-collapse
+    .ant-collapse-item
+      margin-bottom 4px
+      .ant-collapse-header
+        background #D5E6FC
+        padding 6px 16px 6px 40px !important

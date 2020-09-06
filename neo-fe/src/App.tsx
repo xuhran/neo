@@ -1,18 +1,27 @@
 import React from 'react'
+import { Route, Switch, withRouter, Redirect, RouteComponentProps } from 'react-router-dom'
+import Layout from '@/pages/Layout'
+import { routeList } from './router'
 
-function App() {
+const App: React.FC<RouteComponentProps> = (props: RouteComponentProps) => {
+  const childrenRouteList = routeList.filter(item => item.name !== 'Layout')
   return (
-    <div className="App">
-      <header className="App-header">
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a className="App-link" href="https://reactjs.org" target="_blank" rel="noopener noreferrer">
-          Learn React
-        </a>
-      </header>
+    <div>
+      <Switch>
+        {childrenRouteList.map(route => {
+          return (
+            <Route key={route.name} exact={route.exact} path={route.path}>
+              <Route component={route.component}></Route>
+            </Route>
+          )
+        })}
+        <Route path="/layout">
+          <Layout></Layout>
+        </Route>
+        <Redirect from="/" to="/layout" />
+        <Redirect from="*" to="/404"></Redirect>
+      </Switch>
     </div>
   )
 }
-
-export default App
+export default withRouter(App)
