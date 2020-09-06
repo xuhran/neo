@@ -22,7 +22,7 @@
   },
   "extends": "./alias.json",
   "include": [
-    "src"
+    "src/**/*"
   ],
   "exclude": [
     "node_modules/**/*"

@@ -1,6 +1,6 @@
-import lazy from '@/libs/lazy'
+import lazy from './libs/lazy'
 
-const Dashboard = lazy(() => import('@/pages/Dashboard'))
+const Dashboard = lazy(() => import('./pages/Dashboard'))
 
 export const routeList = [
   // {
@@ -84,7 +84,7 @@ export const routeList = [
   // },
   {
     name: 'NotFound',
-    path: '/index',
+    path: '/layout',
     exact: false,
     component: Dashboard,
     children: [],
