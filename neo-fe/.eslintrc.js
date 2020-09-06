@@ -70,7 +70,8 @@ module.exports = {
         ignoreReadBeforeAssign: false,
       },
     ],
-    '@typescript-eslint/interface-name-prefix': [2, { prefixWithI: 'always' }],
+    '@typescript-eslint/explicit-module-boundary-types': 0,
+    '@typescript-eslint/interface-name-prefix': 0,
     '@typescript-eslint/explicit-function-return-type': ['off'],
     '@typescript-eslint/no-explicit-any': ['off'], // 先忽略，但是尽量少用 any
     '@typescript-eslint/no-inferrable-types': ['off'], // 类型推断
